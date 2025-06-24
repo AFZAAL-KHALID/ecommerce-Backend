@@ -9,6 +9,7 @@ const createToken = (id) => {
 
 //1️⃣--------- Route for user login
 const loginUser = async (req, res) => {
+    
   try {
     const { email, password } = req.body;
 
@@ -22,7 +23,7 @@ const loginUser = async (req, res) => {
 
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ success: true, token }); // cookies  FIXME:
+      res.json({ success: true, token });
     } else {
       res.json({ success: false, message: "invalid user" });
     }
@@ -79,6 +80,7 @@ const registerUser = async (req, res) => {
 
 //  3️⃣------------Route for ADMIN login
 const adminLogin = async (req, res) => {
+  console.log("✅ adminLogin function is running");
   try {
     const { email, password } = req.body;
 
@@ -87,7 +89,7 @@ const adminLogin = async (req, res) => {
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_SECRET);
-      res.json({ success: true, token });
+      res.json({ success:true, token});
     } else {
       res.json({ success: false, message: "something went wrong" });
     }

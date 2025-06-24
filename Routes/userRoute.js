@@ -4,7 +4,6 @@ import {
   registerUser,
   adminLogin,
 } from "./../Controllers/userController.js";
-import adminAuth from "./../Middleware/adminAuth.js";
 
 const userRouter = express.Router();
 

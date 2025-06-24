@@ -1,4 +1,7 @@
 import express from 'express'
+import dotenv from "dotenv";
+dotenv.config();
+
 import cors from 'cors' // Importing CORS to allow requests from different origins 
 import 'dotenv/config'
 import connectDB from './Config/mongodb.js'
@@ -15,7 +18,11 @@ connectDB()
 connectCloudinary()
 
 
-
+// ✅ Test route to confirm backend is working
+app.post('/ping', (req, res) => {
+  console.log('✅ /ping route was hit');
+  res.send('pong');
+});
 
 
 //middlewares
@@ -47,5 +54,5 @@ app.get('/', (req, res)=>(
 
 
 
-app.listen(port, ()=> console.log(`server started on poet:` + port)
+app.listen(port, ()=> console.log(`server started on port:` + port)
 )
